@@ -1,0 +1,249 @@
+﻿@model EntityLayer.Concrete.BusService
+
+
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+
+
+<div class="fh5co-hero">
+    <div class="fh5co-cover" data-stellar-background-ratio="0.5" style="background-image: url(../../MKTur/images/banner.jpg);">
+        <div class="desc">
+            <div class="container">
+                <div class="row">
+                    <div class="col-sm-5 col-md-5">
+                        <div class="tabulation animate-box">
+
+                            <!-- Nav tabs -->
+                            <ul class="nav nav-tabs" role="tablist">
+                                <li role="presentation" class="active">
+                                    <a href="#otobus" aria-controls="flights" role="tab" data-toggle="tab">Otobüs Bileti</a>
+                                </li>
+                                <li role="presentation">
+                                    <a href="#Bilet" aria-controls="hotels" role="tab" data-toggle="tab">Bilet Sorgulama</a>
+                                </li>
+                            </ul>
+
+                            <!-- Tab panes -->
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane active" id="otobus">
+                                    @using (Html.BeginForm("Index", "Seferler", FormMethod.Post))
+                                    {
+                                        <div class="row">
+                                            <div class="col-xxs-12 col-xs-12 mt">
+                                                <div class="input-field">
+                                                    <label for="toCity">Kalkış</label>
+                                                    @Html.DropDownListFor(x => x.ToCityId, (List<SelectListItem>)ViewBag.cv, new { @class = "cs-select cs-skin-border" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xxs-12 col-xs-12 mt">
+                                                <div class="input-field">
+                                                    <label for="fromCity">Varış</label>
+                                                    @Html.DropDownListFor(x => x.FromCityId, (List<SelectListItem>)ViewBag.cv, new { @class = "cs-select cs-skin-border" })
+                                                </div>
+                                            </div>
+                                            <div class="col-xxs-12 col-xs-6 mt alternate">
+                                                <div class="input-field">
+                                                    <label for="date-start">Gidiş Tarihi</label>
+                                                    <input type="text" class="form-control" id="date-start" placeholder="../../...." />
+                                                </div>
+                                            </div>
+                                            <div class="col-xxs-12 col-xs-6 mt">
+                                                <section>
+                                                    <label for="class">Yolcu Sayısı</label>
+                                                    <select class="cs-select cs-skin-border">
+                                                        <option value="" disabled selected>1</option>
+                                                        <option value="1">1</option>
+                                                        <option value="2">2</option>
+                                                        <option value="3">3</option>
+                                                        <option value="4">4</option>
+                                                    </select>
+                                                </section>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <input type="submit" class="btn btn-primary btn-block" value="SEFER SORGULA">
+                                            </div>
+
+                                        </div>
+                                    }
+                                </div>
+                                <div role="tabpanel" class="tab-pane" id="Bilet">
+                                    @using (Html.BeginForm("Index", "Bilet", FormMethod.Post))
+                                    {
+                                        if (User.Identity.IsAuthenticated)
+                                        {
+                                    
+                                        <span class="text-primary mb-5">Hoşgeldin @User.Identity.Name</span> 
+                                        <a href="/Bilet/MyTickets" class="btn btn-primary" style="margin-top:50px;">Bilet Detayların için Tıkla</a>
+
+                                        }
+                                        else
+                                        {
+                                        <div class="row">
+                                            <div class="col-xxs-12 col-xs-12 mt">
+                                                <div class="input-field">
+                                                    <label for="toCity">PNR NO</label>
+                                                    <input type="text" name="Pnr" class="form-control" value="" />
+                                                </div>
+                                            </div>
+                                            <div class="col-xs-12">
+                                                <input type="submit" class="btn btn-primary btn-block" value="Bilet Detayları">
+                                            </div>
+
+                                        </div>
+                                        }
+
+                                        }
+
+</div>
+
+
+                            </div>
+                        </div>
+
+
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<div id="fh5co-tours" class="fh5co-section-gray">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-8 col-md-offset-2 text-center heading-section animate-box">
+                <h3>En çok tercih edilen seyahatler</h3>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                <div href="#">
+                    <img src="https://cdnp.flypgs.com/files/Sehirler-long-tail/Gaziantep/gaziantep-sehir-rehberi.jpg" style="height:300px" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
+                    <div class="desc">
+                        <span></span>
+                        <h3>İstanbul-Gaziantep</h3>
+                        <span class="price">500 ₺</span>
+                        <a class="btn btn-primary btn-outline" href="#Otobus">Hemen Satın Al <i class="icon-arrow-right22"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                <div href="#">
+                    <img src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/b0/e9/fb/photo3jpg.jpg?w=600&h=400&s=1" style="height:300px" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
+                    <div class="desc">
+                        <span></span>
+                        <h3>Karabük</h3>
+                        <span class="price">300 ₺</span>
+                        <a class="btn btn-primary btn-outline" href="#Otobus">Hemen Satın Al<i class="icon-arrow-right22"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6 fh5co-tours animate-box" data-animate-effect="fadeIn">
+                <div href="#">
+                    <img src="https://blog.biletbayi.com/wp-content/uploads/2021/02/karabuk-tarihi-yerler.jpg" style="height:300px" alt="Free HTML5 Website Template by FreeHTML5.co" class="img-responsive">
+                    <div class="desc">
+                        <span></span>
+                        <h3>Bolu</h3>
+                        <span class="price">200 ₺</span>
+                        <a class="btn btn-primary btn-outline" href="#Otobus">Hemen Satın Al <i class="icon-arrow-right22"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-12 text-center animate-box">
+                <p><a class="btn btn-primary btn-outline btn-lg" href="#Otobus">Tüm Teklifleri Gör <i class="icon-arrow-right22"></i></a></p>
+            </div>
+        </div>
+    </div>
+</div>
+<div id="fh5co-destination">
+    <div class="tour-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <ul id="fh5co-destination-list" class="animate-box">
+                    <li class="one-forth text-center" style="background-image: url(images/place-1.jpg); ">
+                        <a href="#">
+                            <div class="case-studies-summary">
+                                <h2>İstanbul</h2>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="one-forth text-center" style="background-image: url(images/place-2.jpg); ">
+                        <a href="#">
+                            <div class="case-studies-summary">
+                                <h2>Ankara</h2>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="one-forth text-center" style="background-image: url(images/place-3.jpg); ">
+                        <a href="#">
+                            <div class="case-studies-summary">
+                                <h2>Trabzon</h2>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="one-forth text-center" style="background-image: url(images/place-4.jpg); ">
+                        <a href="#">
+                            <div class="case-studies-summary">
+                                <h2>İzmir</h2>
+                            </div>
+                        </a>
+                    </li>
+
+                    <li class="one-forth text-center" style="background-image: url(images/place-5.jpg); ">
+                        <a href="#">
+                            <div class="case-studies-summary">
+                                <h2>Gaziantep</h2>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="one-half text-center">
+                        <div class="title-bg">
+                            <div class="case-studies-summary">
+                                <h2>ÇALIŞTIĞIMIZ ŞEHİRLER</h2>
+                                <span><a href="#">Bilgi için tıklayınız.</a></span>
+                            </div>
+                        </div>
+                    </li>
+                    <li class="one-forth text-center" style="background-image: url(images/place-6.jpg); ">
+                        <a href="#">
+                            <div class="case-studies-summary">
+                                <h2>Kocaeli</h2>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="one-forth text-center" style="background-image: url(images/place-7.jpg); ">
+                        <a href="#">
+                            <div class="case-studies-summary">
+                                <h2>Antalya</h2>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="one-forth text-center" style="background-image: url(images/place-8.jpg); ">
+                        <a href="#">
+                            <div class="case-studies-summary">
+                                <h2>Hakkari</h2>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="one-forth text-center" style="background-image: url(images/place-9.jpg); ">
+                        <a href="#">
+                            <div class="case-studies-summary">
+                                <h2>Mersin</h2>
+                            </div>
+                        </a>
+                    </li>
+                    <li class="one-forth text-center" style="background-image: url(images/place-10.jpg); ">
+                        <a href="#">
+                            <div class="case-studies-summary">
+                                <h2>Çanakkale</h2>
+                            </div>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
